@@ -13,6 +13,8 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags="-w -s" -o 
 
 FROM alpine:3
 
+RUN apk --no-cache upgrade
+
 COPY --from=builder /go/bin/docker_state_exporter /go/bin/docker_state_exporter
 
 EXPOSE 8080

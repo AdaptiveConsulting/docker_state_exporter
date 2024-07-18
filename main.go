@@ -107,7 +107,7 @@ func (c *dockerHealthCollector) collectMetrics(ch chan<- prometheus.Metric) {
 			}
 			return 0
 		}
-		mapcopy := func(src map[string]string) prometheus.Labels {
+		mapcopy := func(_ map[string]string) prometheus.Labels {
 			dst := map[string]string{}
 			for k, v := range labels {
 				dst[k] = v

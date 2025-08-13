@@ -1,4 +1,4 @@
-FROM golang:1.22-alpine as builder
+FROM golang:1.24.6-alpine AS builder
 
 RUN apk update && apk add \
     git \
@@ -11,7 +11,7 @@ WORKDIR $GOPATH/src/docker_state_exporter/
 RUN go mod vendor -v
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags="-w -s" -o /go/bin/docker_state_exporter
 
-FROM alpine:3
+FROM alpine:3.21
 
 RUN apk -U --no-cache upgrade
 
